@@ -8,7 +8,6 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Form />
       <FeedbackForm />
       <Display />
     </div>
