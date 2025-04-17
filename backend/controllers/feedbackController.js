@@ -3,7 +3,6 @@ const path = require('path');
 
 const feedbackFilePath= path.join(__dirname, "../data/feedback.json");
 
-app.use(express.json());
 
 exports.getFeedback= async (req, res) =>{
     try{

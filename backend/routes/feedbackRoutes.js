@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getFeedback, writeFeedback } = require('.../controllers/peopleController');
+const { getFeedback, writeFeedback } = require('../controllers/feedbackController');
 
 router.get('/', getFeedback);
 router.post('/', writeFeedback);

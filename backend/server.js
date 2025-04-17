@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
-const peopleRoutes = requires('./routes/peopleRoutes');
-const feedbackRoutes = requires('./routes/feedbackRoutes');
+const peopleRoutes = require('./routes/peopleRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 const port = 3001;
 
 app.use(express.json());
