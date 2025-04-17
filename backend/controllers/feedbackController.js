@@ -18,12 +18,12 @@ exports.getFeedback= async (req, res) =>{
 
 exports.writeFeedback = async (req, res) =>{
     try{
-        const peopleData = await fs.readFile(feedbackFilePath);
+        const feedbackData = await fs.readFile(feedbackFilePath);
         const feedback = JSON.parse(feedbackData)
 
         const newFeedback = req.body
         feedbacks.push(newFeedback);
-        fs.writeFile(feedbackFilePath, JSON.stringify(feedbacks, null, 2))
+        fs.writeFile(feedbackFilePath, JSON.stringify(feedback, null, 2))
         res.status(201).json({"message":"Feedback ajouté avec succès", "feedback": newFeedback})
     }
     catch (error){
