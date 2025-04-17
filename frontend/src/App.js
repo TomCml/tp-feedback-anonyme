@@ -1,5 +1,6 @@
 import './App.css';
 import Display from './components/Displayer/Display';
+import FeedbackForm from './components/Form/FeedbackForm';
 import Form from './components/Form/Form';
 import Header from './components/Header/Header';
 
@@ -8,6 +9,7 @@ function App() {
     <div className="App">
       <Header />
       <Form />
+      <FeedbackForm />
       <Display />
     </div>
   );
