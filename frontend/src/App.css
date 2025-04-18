@@ -1,14 +1,16 @@
-:root{
-  --main: #e05d38;
-  --background-1: #e8ebed;
-  --background-2: #ffffff;
-  --transition-duration: 0.2s;
+:root {
+	--main: #e05d38;
+	--main-light: #e96b48;
+	--valid: rgb(0, 160, 0);
+	--valid-hover: rgb(0, 180, 0);
+	--not-valid: rgb(160, 0, 0);
+	--background-1: #e8ebed;
+	--background-2: #ffffff;
+	--transition-duration: 0.2s;
 }
-
 
 .App {
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
+	text-align: center;
+	max-width: 100vw;
+	height: 100vh;
 }
-
