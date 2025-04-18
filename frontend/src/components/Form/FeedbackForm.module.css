@@ -4,6 +4,7 @@
 	align-items: center;
 	flex-direction: column;
 	background-color: var(--background-1);
+	padding: 10px;
 }
 
 .form {
@@ -16,7 +17,6 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	flex: 1;
 }
 
 .contentInput {

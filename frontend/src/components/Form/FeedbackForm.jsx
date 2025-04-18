@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import styles from './FeedbackForm.module.css';
 import { getPeople } from '../../functions/getPeople';
-import { getFeedbacks } from '../../functions/getFeedbacks';
 
 const FeedbackForm = ({ onAddFeedback }) => {
 	const [category, setCategory] = useState('');
@@ -11,10 +10,18 @@ const FeedbackForm = ({ onAddFeedback }) => {
 	const categories = 'categorie1, categorie2, categorie3, categorie4';
 	const names = 'name1, name2, name3, name4';
 
-	const testPeople = getPeople();
-	console.log(testPeople);
-	const testFeedbakc = getFeedbacks();
-	console.log(testFeedbakc);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const peoples = await getPeople();
+				console.log('Personnes récupérées :', peoples);
+			} catch (err) {
+				console.error('Erreur lors du fetch :', err);
+			}
+		};
+
+		fetchData();
+	}, []);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -28,7 +35,6 @@ const FeedbackForm = ({ onAddFeedback }) => {
 
 	return (
 		<div className={styles.container}>
-			<h1 className={styles.title}>Feedback Form</h1>
 			<form onSubmit={handleSubmit} className={styles.form}>
 				<div className={styles.inputs}>
 					<div className={styles.selects}>
