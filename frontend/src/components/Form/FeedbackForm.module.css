@@ -1,53 +1,82 @@
-.feedback-form-container {
-	margin: 20px;
-	padding: 15px;
-	border: 1px solid #ddd;
-	border-radius: 8px;
-}
-
-.feedback-form {
+.container {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	justify-content: center;
+	background-color: var(--background-1);
 }
 
-.form-group {
+.inputs {
 	display: flex;
-	flex-direction: column;
-}
-
-.form-group label {
-	margin-bottom: 5px;
-	font-weight: bold;
-}
-
-.form-group input {
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-}
-
-.text-input-container {
-	margin-top: 15px;
-}
-
-.text-input-container textarea {
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
 	width: 100%;
-	padding: 8px;
+	flex: 1;
+}
+
+.contentInput {
 	border: 1px solid #ccc;
-	border-radius: 4px;
-	min-height: 100px;
+	border-radius: 8px;
+	padding: 1rem;
+	width: 100%;
+	max-width: 800px;
+	margin: 1rem auto;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.submit-button {
-	padding: 10px;
-	background-color: #4caf50;
-	color: white;
+.textarea {
+	width: 100%;
+	min-height: 150px;
 	border: none;
-	border-radius: 4px;
-	cursor: pointer;
+	outline: none;
+	resize: vertical;
+	font-size: 1rem;
+	background-color: transparent;
 }
 
-.submit-button:hover {
-	background-color: #45a049;
+.selects {
+	display: flex;
+	gap: 5%;
+	margin-left: 14%;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 30%;
+}
+
+.valid {
+	display: flex;
+	gap: 5%;
+	margin-right: 14%;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 30%;
+}
+
+.submitButton {
+	background-color: #1c1c1e;
+	color: white;
+	font-weight: 600;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 12px;
+	font-size: 1rem;
+	cursor: pointer;
+	width: 100%;
+	max-width: 300px;
+	transition: background-color 0.2s ease, transform 0.2s ease;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	text-align: center;
+}
+
+.submitButton:hover:enabled {
+	background-color: #2a2a2c;
+	transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+	background-color: #888;
+	cursor: not-allowed;
+	opacity: 0.6;
 }
