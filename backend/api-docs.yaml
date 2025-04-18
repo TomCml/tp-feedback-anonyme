@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: Feedback Anonyme API
+  description: API pour gérer les feedbacks anonymes entre étudiants et professeurs
+  version: 1.0.0
+servers:
+  - url: http://localhost:3001
+    description: Serveur de développement
+
+components:
+  schemas:
+    People:
+      type: object
+      required:
+        - name
+        - category
+      properties:
+        name:
+          type: string
+          description: Le nom de la personne
+        category:
+          type: string
+          enum: [student, teacher]
+          description: La catégorie de la personne (étudiant ou professeur)
+
+    Feedback:
+      type: object
+      required:
+        - people
+        - feedback
+      properties:
+        people:
+          $ref: '#/components/schemas/People'
+        feedback:
+          type: string
+          description: Le message de feedback
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Message d'erreur explicatif
+        error:
+          type: string
+          description: Détails techniques de l'erreur
+
+paths:
+  /people:
+    get:
+      summary: Récupérer la liste des personnes
+      description: Retourne la liste de toutes les personnes (étudiants et professeurs)
+      responses:
+        '200':
+          description: Liste des personnes récupérée avec succès
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/People'
+        '500':
+          description: Erreur serveur
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /feedback:
+    get:
+      summary: Récupérer tous les feedbacks
+      description: Retourne la liste de tous les feedbacks
+      responses:
+        '200':
+          description: Liste des feedbacks récupérée avec succès
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feedback'
+        '500':
+          description: Erreur serveur
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      summary: Créer un nouveau feedback
+      description: Ajoute un nouveau feedback dans la base de données
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      responses:
+        '201':
+          description: Feedback créé avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Feedback ajouté avec succès"
+                  feedback:
+                    $ref: '#/components/schemas/Feedback'
+        '500':
+          description: Erreur serveur
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
