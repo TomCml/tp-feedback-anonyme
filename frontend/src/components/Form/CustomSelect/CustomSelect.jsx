@@ -6,6 +6,7 @@ const CustomSelect = ({
 	onChange,
 	optionsString,
 	placeholder = 'Choisir...',
+	disabled = false,
 }) => {
 	const options = optionsString
 		.split(',')
@@ -13,7 +14,12 @@ const CustomSelect = ({
 		.filter((opt) => opt.length > 0);
 
 	return (
-		<select className={styles.select} value={value} onChange={onChange}>
+		<select
+			className={styles.select}
+			value={value}
+			onChange={onChange}
+			disabled={disabled}
+		>
 			<option value='' disabled hidden>
 				{placeholder}
 			</option>
