@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import styles from './FeedbackForm.module.css'; // Import du module CSS
+import CustomSelect from './CustomSelect/CustomSelect';
+import styles from './FeedbackForm.module.css';
 
 const FeedbackForm = ({ onAddFeedback }) => {
 	const [category, setCategory] = useState('');
 	const [name, setName] = useState('');
 	const [text, setText] = useState('');
+	const option = 'categorie1, categorie2, categorie3, categorie4';
+	const option2 = 'name1, name2, name3, name4';
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -20,55 +23,26 @@ const FeedbackForm = ({ onAddFeedback }) => {
 		<div className={styles.container}>
 			<h1 className={styles.title}>Feedback Form</h1>
 			<form onSubmit={handleSubmit} className={styles.form}>
-				<div className={styles.formGroup}>
-					<label htmlFor='category' className={styles.label}>
-						Choix de catégorie
-					</label>
-					<select
-						id='category'
-						value={category}
-						onChange={(e) => {
-							setCategory(e.target.value);
-							setName('');
-						}}
-						className={styles.select}
-					>
-						<option value=''>Sélectionnez une catégorie</option>
-						<option value='cat1'>Catégorie 1</option>
-						<option value='cat2'>Catégorie 2</option>
-					</select>
-				</div>
+				<div className={styles.inputs}>
+					<div className={styles.selects}>
+						{' '}
+						<CustomSelect optionsString={option} />
+						<CustomSelect optionsString={option2} />
+					</div>
 
-				<div className={styles.formGroup}>
-					<label htmlFor='name' className={styles.label}>
-						Choix du nom
-					</label>
-					<select
-						id='name'
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						disabled={!category}
-						className={styles.select}
-					>
-						<option value=''>Sélectionnez un nom</option>
-						<option value='name1'>Nom 1</option>
-						<option value='name2'>Nom 2</option>
-					</select>
+					<div className={styles.valid}>
+						<button
+							type='submit'
+							className={styles.submitButton}
+							disabled={!category || !name || !text}
+						>
+							Valider
+						</button>
+					</div>
 				</div>
-
-				<button
-					type='submit'
-					className={styles.submitButton}
-					disabled={!category || !name || !text}
-				>
-					Valider
-				</button>
 			</form>
 
-			<div className={styles.textInputContainer}>
-				<label htmlFor='feedback-text' className={styles.label}>
-					Feedback-text
-				</label>
+			<div className={styles.contentInput}>
 				<textarea
 					id='feedback-text'
 					value={text}
