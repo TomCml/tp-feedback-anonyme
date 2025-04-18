@@ -2,34 +2,26 @@ import React from 'react';
 import styles from './CustomSelect.module.css';
 
 const CustomSelect = ({
+	options = [],
 	value,
 	onChange,
-	optionsString,
-	placeholder = 'Choisir...',
-	disabled = false,
-}) => {
-	const options = optionsString
-		.split(',')
-		.map((opt) => opt.trim())
-		.filter((opt) => opt.length > 0);
-
-	return (
-		<select
-			className={styles.select}
-			value={value}
-			onChange={onChange}
-			disabled={disabled}
-		>
-			<option value='' disabled hidden>
-				{placeholder}
+	placeholder,
+	disabled,
+}) => (
+	<select
+		className={styles.select}
+		value={value}
+		onChange={(e) => onChange(e.target.value)}
+		disabled={disabled}
+		required
+	>
+		<option value=''>{placeholder}</option>
+		{options.map((option) => (
+			<option key={option} value={option}>
+				{option}
 			</option>
-			{options.map((option) => (
-				<option key={option} value={option}>
-					{option}
-				</option>
-			))}
-		</select>
-	);
-};
+		))}
+	</select>
+);
 
 export default CustomSelect;
