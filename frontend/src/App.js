@@ -4,6 +4,7 @@ import Display from './components/Displayer/Display';
 import FeedbackForm from './components/Form/FeedbackForm';
 import Header from './components/Header/Header';
 import { getFeedbacks } from './functions/getFeedbacks';
+import { postFeedbacks } from './functions/postFeedbacks';
 
 function App() {
 	const [feedbacks, setFeedbacks] = useState([]);
@@ -20,8 +21,15 @@ function App() {
 		fetchData();
 	}, []);
 
-	const handleAddFeedback = (newFeedback) => {
-		setFeedbacks((prev) => [newFeedback, ...prev]);
+	const handleAddFeedback = async (newFeedback) => {
+		try {
+			const result = await postFeedbacks(newFeedback);
+			if (result.feedbacks) {
+				setFeedbacks(result.feedbacks);
+			}
+		} catch (err) {
+			console.error("Erreur lors de l'ajout du feedback :", err);
+		}
 	};
 
 	return (

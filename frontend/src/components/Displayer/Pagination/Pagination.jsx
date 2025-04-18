@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './Pagination.module.css';
+import { ChevronLeftIcon } from './icons/ChevronLeftIcon';
+import { ChevronRightIcon } from './icons/ChevronRightIcon';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 	const handlePageChange = (newPage) => {
@@ -15,7 +17,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 				disabled={currentPage === 1}
 				className={`${styles.button} ${styles.previousButton}`}
 			>
-				Précédent
+				<ChevronLeftIcon />
 			</button>
 
 			<span className={styles.pageInfo}>
@@ -27,7 +29,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 				disabled={currentPage === totalPages}
 				className={`${styles.button} ${styles.nextButton}`}
 			>
-				Suivant
+				<ChevronRightIcon />
 			</button>
 		</div>
 	);
