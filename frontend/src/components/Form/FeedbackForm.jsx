@@ -25,8 +25,19 @@ const FeedbackForm = ({ onAddFeedback }) => {
 			<form onSubmit={handleSubmit} className={styles.form}>
 				<div className={styles.inputs}>
 					<div className={styles.selects}>
-						<CustomSelect optionsString={categories} />
-						<CustomSelect optionsString={names} />
+						<CustomSelect
+							optionsString={categories}
+							value={category}
+							onChange={(e) => setCategory(e.target.value)}
+							placeholder='Choix de catégorie'
+						/>
+						<CustomSelect
+							optionsString={names}
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							placeholder='Choix du nom'
+							disabled={!category}
+						/>
 					</div>
 
 					<div className={styles.valid}>
