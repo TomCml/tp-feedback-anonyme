@@ -19,7 +19,8 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mongodb": "^6.15.0",
-    "mongoose": "^8.2.3"
+    "mongoose": "^8.2.3",
+    "express-validator": "7.2.1"
   },
   "devDependencies": {
     "jest": "^29.7.0",
