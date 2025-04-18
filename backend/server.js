@@ -4,13 +4,9 @@ const cors = require("cors");
 const app = express();
 const peopleRoutes = require('./routes/peopleRoutes');
 const feedbackRoutes = require('./routes/feedbackRoutes');
-const dotenv = require('dotenv')
-
-dotenv.config();
-
+const port = 3001;
 require('./db/mongo'); 
 
-const port = 3001;
 
 app.use(express.json());
 
@@ -22,8 +18,8 @@ app.use(
     })
   );
 
-app.use('/api', peopleRoutes);
-app.use('/api', feedbackRoutes);
+app.use('/peoples', peopleRoutes);
+app.use('/feedbacks', feedbackRoutes);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
