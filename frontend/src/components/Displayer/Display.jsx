@@ -1,39 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import styles from './Display.module.css';
+import React from 'react';
 import Card from './Card/Card';
+import styles from './Display.module.css';
 
-import { getFeedbacks } from '../../functions/getFeedbacks';
-
-const Display = () => {
-	const [feedbacks, setFeedbacks] = useState([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const result = await getFeedbacks();
-				setFeedbacks(result);
-			} catch (err) {
-				console.error('Erreur lors du fetch :', err);
-			}
-		};
-
-		fetchData();
-	}, []);
-
+const Display = ({ feedbacks = [] }) => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.cards}>
-				{feedbacks.slice(0, 10).map((item) => (
+				{feedbacks.slice(0, 10).map((item, index) => (
 					<Card
-						key={item._id}
+						key={item._id || index}
 						className={styles.card}
 						category={
-							item.people.category === 'teacher'
+							item?.people?.category === 'teacher'
 								? 'Professeur'
-								: 'Étudiant'
+								: item?.people?.category === 'student'
+								? 'Étudiant'
+								: item?.category || 'Inconnu'
 						}
-						name={item.people.name}
-						content={item.feedback}
+						name={item?.people?.name || item?.name}
+						content={item?.feedback || item?.text}
 					/>
 				))}
 			</div>
