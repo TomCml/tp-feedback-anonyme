@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import Card from './Card/Card';
 import styles from './Display.module.css';
 import Pagination from './Pagination/Pagination';
@@ -11,11 +11,26 @@ const Display = ({ feedbacks = [] }) => {
 
 	const filteredFeedbacks = useMemo(() => {
 		if (!searchTerm.trim()) return feedbacks;
-		return feedbacks.filter((fb) =>
-			Object.values(fb).some((value) =>
-				String(value).toLowerCase().includes(searchTerm.toLowerCase())
-			)
-		);
+
+		const lowerSearch = searchTerm.toLowerCase();
+
+		return feedbacks.filter((item) => {
+			const name = (item?.people?.name || item?.name || '').toLowerCase();
+			const category = (
+				item?.people?.category === 'teacher'
+					? 'Professeur'
+					: item?.people?.category === 'student'
+					? 'Etudiant'
+					: item?.category || 'Inconnu'
+			).toLowerCase();
+			const content = (item?.feedback || item?.text || '').toLowerCase();
+
+			return (
+				name.includes(lowerSearch) ||
+				category.includes(lowerSearch) ||
+				content.includes(lowerSearch)
+			);
+		});
 	}, [searchTerm, feedbacks]);
 
 	const totalPages = Math.ceil(filteredFeedbacks.length / itemsPerPage);
@@ -28,6 +43,10 @@ const Display = ({ feedbacks = [] }) => {
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
 	};
+
+	useEffect(() => {
+		setCurrentPage(1);
+	}, [searchTerm]);
 
 	return (
 		<div className={styles.container}>
@@ -44,7 +63,7 @@ const Display = ({ feedbacks = [] }) => {
 							item?.people?.category === 'teacher'
 								? 'Professeur'
 								: item?.people?.category === 'student'
-								? 'Étudiant'
+								? 'Etudiant'
 								: item?.category || 'Inconnu'
 						}
 						name={item?.people?.name || item?.name}
