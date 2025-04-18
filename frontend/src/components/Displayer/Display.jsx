@@ -11,11 +11,18 @@ const Display = ({ feedbacks = [] }) => {
 
 	const filteredFeedbacks = useMemo(() => {
 		if (!searchTerm.trim()) return feedbacks;
-		return feedbacks.filter((fb) =>
-			Object.values(fb).some((value) =>
-				String(value).toLowerCase().includes(searchTerm.toLowerCase())
-			)
-		);
+
+		const lowerSearch = searchTerm.toLowerCase();
+
+		return feedbacks.filter((fb) => {
+			const name = fb?.people?.name || fb?.name || '';
+			const content = fb?.feedback || fb?.text || '';
+
+			return (
+				name.toLowerCase().includes(lowerSearch) ||
+				content.toLowerCase().includes(lowerSearch)
+			);
+		});
 	}, [searchTerm, feedbacks]);
 
 	const totalPages = Math.ceil(filteredFeedbacks.length / itemsPerPage);
