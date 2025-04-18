@@ -69,7 +69,7 @@ const FeedbackForm = ({ onAddFeedback }) => {
 						id='feedback-text'
 						value={text}
 						onChange={(e) => setText(e.target.value)}
-						placeholder='Input texte'
+						placeholder='Ecrivez votre avis...'
 						className={styles.textarea}
 					/>
 				</div>

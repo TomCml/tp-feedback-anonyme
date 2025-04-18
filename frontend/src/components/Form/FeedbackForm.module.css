@@ -5,10 +5,15 @@
 	flex-direction: column;
 	background-color: var(--background-1);
 	padding: 10px;
+	overflow: hidden;
 }
 
 .form {
 	width: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .inputs {
@@ -16,21 +21,21 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 100%;
+	width: 80%;
 }
 
 .contentInput {
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	padding: 1rem;
-	width: 80%;
+	width: 60%;
 	margin: 1rem auto;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .textarea {
 	width: 100%;
-	min-height: 150px;
+	min-height: 100px;
 	border: none;
 	outline: none;
 	resize: vertical;
@@ -59,7 +64,7 @@
 }
 
 .submitButton {
-	background-color: green;
+	background-color: var(--valid);
 	color: white;
 	font-weight: 600;
 	padding: 12px 24px;
@@ -72,15 +77,16 @@
 	transition: background-color 0.2s ease, transform 0.2s ease;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	text-align: center;
+	transition: background-color 0.2s ease;
 }
 
 .submitButton:hover:enabled {
-	background-color: rgb(1, 102, 1);
+	background-color: var(--valid-hover);
 	transform: translateY(-1px);
 }
 
 .submitButton:disabled {
-	background-color: rgb(0, 80, 0);
+	background-color: var(--not-valid);
 	cursor: not-allowed;
 	opacity: 0.6;
 }

@@ -1,5 +1,5 @@
 .select {
-	background-color: #1c1c1e;
+	background-color: var(--main);
 	color: white;
 	padding: 12px 16px;
 	border: none;
@@ -11,13 +11,14 @@
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 	appearance: none;
+	transition: background-color 0.2s ease;
 }
 
 .select:focus {
 	outline: none;
-	background-color: #2a2a2c;
+	background-color: var(--main);
 }
 
 .select:hover {
-	background-color: #2a2a2c;
+	background-color: var(--main-light);
 }
