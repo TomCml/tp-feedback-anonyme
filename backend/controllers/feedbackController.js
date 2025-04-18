@@ -12,8 +12,9 @@ exports.getFeedback = async (req, res) => {
 
 exports.writeFeedback = async (req, res) => {
     try {
-        const newFeedback = await db.createFeedback(req.body);
-        res.status(201).json({"message":"Feedback ajouté avec succès", "feedback": newFeedback});
+        await db.createFeedback(req.body);
+        const allFeedbacks = await db.getFeedbacks();
+        res.status(201).json({"message":"Feedback ajouté avec succès", "feedbacks": allFeedbacks});
     }
     catch (error) {
         res.status(500).json({"message":"Erreur lors de l'ajout du feedback", "error": error.message});
