@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --detectOpenHandles",
+    "test:dev": "jest --watch --detectOpenHandles",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
@@ -29,9 +30,6 @@
     "testEnvironment": "node",
     "testMatch": [
       "**/tests/**/*.test.js"
-    ],
-    "setupFilesAfterEnv": [
-      "./tests/setup.js"
     ]
   }
 }
