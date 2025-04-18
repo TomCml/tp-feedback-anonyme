@@ -17,6 +17,6 @@ const feedbackSchema = new mongoose.Schema({
         required: true,
         trim: true
     }
-}, { collection: 'feedback' }); // Forcer le nom de la collection
+}, { collection: 'feedback' }); 
 
 module.exports = mongoose.model('Feedback', feedbackSchema, 'feedback'); 
