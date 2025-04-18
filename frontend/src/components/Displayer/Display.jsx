@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Card from './Card/Card';
 import styles from './Display.module.css';
 import Pagination from './Pagination/Pagination';
+import SearchBar from './SearchBar/SearchBar';
 
 const Display = ({ feedbacks = [] }) => {
+	const [searchTerm, setSearchTerm] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
 	const itemsPerPage = 5;
 
-	const totalPages = Math.ceil(feedbacks.length / itemsPerPage);
+	const filteredFeedbacks = useMemo(() => {
+		if (!searchTerm.trim()) return feedbacks;
+		return feedbacks.filter((fb) =>
+			Object.values(fb).some((value) =>
+				String(value).toLowerCase().includes(searchTerm.toLowerCase())
+			)
+		);
+	}, [searchTerm, feedbacks]);
 
-	const paginatedFeedbacks = feedbacks.slice(
-		(currentPage - 1) * itemsPerPage,
-		currentPage * itemsPerPage
-	);
+	const totalPages = Math.ceil(filteredFeedbacks.length / itemsPerPage);
+
+	const paginatedFeedbacks = useMemo(() => {
+		const start = (currentPage - 1) * itemsPerPage;
+		return filteredFeedbacks.slice(start, start + itemsPerPage);
+	}, [filteredFeedbacks, currentPage]);
 
 	const handlePageChange = (newPage) => {
 		setCurrentPage(newPage);
@@ -20,6 +31,10 @@ const Display = ({ feedbacks = [] }) => {
 
 	return (
 		<div className={styles.container}>
+			<div className={styles.filters}>
+				<SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+			</div>
+
 			<div className={styles.cards}>
 				{paginatedFeedbacks.map((item, index) => (
 					<Card
