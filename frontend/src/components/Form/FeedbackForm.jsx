@@ -6,8 +6,8 @@ const FeedbackForm = ({ onAddFeedback }) => {
 	const [category, setCategory] = useState('');
 	const [name, setName] = useState('');
 	const [text, setText] = useState('');
-	const option = 'categorie1, categorie2, categorie3, categorie4';
-	const option2 = 'name1, name2, name3, name4';
+	const categories = 'categorie1, categorie2, categorie3, categorie4';
+	const names = 'name1, name2, name3, name4';
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -25,8 +25,8 @@ const FeedbackForm = ({ onAddFeedback }) => {
 			<form onSubmit={handleSubmit} className={styles.form}>
 				<div className={styles.inputs}>
 					<div className={styles.selects}>
-						<CustomSelect optionsString={option} />
-						<CustomSelect optionsString={option2} />
+						<CustomSelect optionsString={categories} />
+						<CustomSelect optionsString={names} />
 					</div>
 
 					<div className={styles.valid}>
