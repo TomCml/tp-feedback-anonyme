@@ -14,7 +14,6 @@ const FeedbackForm = ({ onAddFeedback }) => {
 			try {
 				const data = await getPeople();
 				setPeoples(data);
-				console.log('Personnes récupérées :', data);
 			} catch (err) {
 				console.error('Erreur lors du fetch :', err);
 			}

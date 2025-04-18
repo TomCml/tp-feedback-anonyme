@@ -6,10 +6,10 @@ export const postFeedbacks = async (data) => {
 	try {
 		const response = await axios.post(`${API_BASE}/feedbacks`, {
 			people: {
-				name: data.name,
-				category: data.category,
+				name: data.people.name,
+				category: data.people.category,
 			},
-			feedback: data.text,
+			feedback: data.feedback,
 		});
 		return response.data;
 	} catch (error) {

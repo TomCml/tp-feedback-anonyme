@@ -1,0 +1,38 @@
+.container {
+	display: flex;
+	align-items: center;
+	background-color: var(--main);
+	border-radius: 50px;
+	padding: 8px 16px;
+	width: 60%;
+	margin: 20px auto;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+	transition: box-shadow 0.2s ease;
+}
+
+.container:focus-within {
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+	margin-right: 12px;
+	color: var(--txt-color-light);
+}
+
+.input {
+	border: none;
+	outline: none;
+	background: transparent;
+	font-size: 16px;
+	width: 100%;
+	color: var(--txt-color-light);
+	font-size: 1.1rem;
+	font-family: var(--police);
+}
+
+.input::placeholder {
+	color: var(--txt-color-light);
+	font-size: 1.1rem;
+	transition: color 0.3s ease;
+	font-family: var(--police);
+}
