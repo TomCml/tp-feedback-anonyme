@@ -25,7 +25,6 @@ const FeedbackForm = ({ onAddFeedback }) => {
 			<form onSubmit={handleSubmit} className={styles.form}>
 				<div className={styles.inputs}>
 					<div className={styles.selects}>
-						{' '}
 						<CustomSelect optionsString={option} />
 						<CustomSelect optionsString={option2} />
 					</div>
@@ -40,17 +39,17 @@ const FeedbackForm = ({ onAddFeedback }) => {
 						</button>
 					</div>
 				</div>
-			</form>
 
-			<div className={styles.contentInput}>
-				<textarea
-					id='feedback-text'
-					value={text}
-					onChange={(e) => setText(e.target.value)}
-					placeholder='Input texte'
-					className={styles.textarea}
-				/>
-			</div>
+				<div className={styles.contentInput}>
+					<textarea
+						id='feedback-text'
+						value={text}
+						onChange={(e) => setText(e.target.value)}
+						placeholder='Input texte'
+						className={styles.textarea}
+					/>
+				</div>
+			</form>
 		</div>
 	);
 };

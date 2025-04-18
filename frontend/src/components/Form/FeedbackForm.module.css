@@ -1,8 +1,13 @@
 .container {
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	background-color: var(--background-1);
+}
+
+.form {
+	width: 90%;
 }
 
 .inputs {
@@ -18,8 +23,7 @@
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	padding: 1rem;
-	width: 100%;
-	max-width: 800px;
+	width: 80%;
 	margin: 1rem auto;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -51,11 +55,11 @@
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	width: 30%;
+	width: 20%;
 }
 
 .submitButton {
-	background-color: #1c1c1e;
+	background-color: green;
 	color: white;
 	font-weight: 600;
 	padding: 12px 24px;
@@ -71,12 +75,12 @@
 }
 
 .submitButton:hover:enabled {
-	background-color: #2a2a2c;
+	background-color: rgb(1, 102, 1);
 	transform: translateY(-1px);
 }
 
 .submitButton:disabled {
-	background-color: #888;
+	background-color: rgb(0, 80, 0);
 	cursor: not-allowed;
 	opacity: 0.6;
 }
