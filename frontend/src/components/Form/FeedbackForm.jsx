@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import CustomSelect from './CustomSelect/CustomSelect';
 import styles from './FeedbackForm.module.css';
+import { getPeople } from '../../functions/getPeople';
+import { getFeedbacks } from '../../functions/getFeedbacks';
 
 const FeedbackForm = ({ onAddFeedback }) => {
 	const [category, setCategory] = useState('');
@@ -8,6 +10,11 @@ const FeedbackForm = ({ onAddFeedback }) => {
 	const [text, setText] = useState('');
 	const categories = 'categorie1, categorie2, categorie3, categorie4';
 	const names = 'name1, name2, name3, name4';
+
+	const testPeople = getPeople();
+	console.log(testPeople);
+	const testFeedbakc = getFeedbacks();
+	console.log(testFeedbakc);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
