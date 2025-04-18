@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import { getPeople } from '../../functions/getPeople';
 import CustomSelect from './CustomSelect/CustomSelect';
 import styles from './FeedbackForm.module.css';
-import { getPeople } from '../../functions/getPeople';
 
 const FeedbackForm = ({ onAddFeedback }) => {
 	const [category, setCategory] = useState('');
 	const [name, setName] = useState('');
 	const [text, setText] = useState('');
-	const categories = 'categorie1, categorie2, categorie3, categorie4';
-	const names = 'name1, name2, name3, name4';
+	const [peoples, setPeoples] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const peoples = await getPeople();
-				console.log('Personnes récupérées :', peoples);
+				const data = await getPeople();
+				setPeoples(data);
+				console.log('Personnes récupérées :', data);
 			} catch (err) {
 				console.error('Erreur lors du fetch :', err);
 			}
 		};
-
 		fetchData();
 	}, []);
+
+	const categories = [...new Set(peoples.map((p) => p.category))];
+
+	const filteredNames = peoples
+		.filter((p) => p.category === category)
+		.map((p) => p.name);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		if (category && name && text) {
-			onAddFeedback({ category, name, text });
+			onAddFeedback({
+				people: { category, name },
+				feedback: text,
+			});
 			setCategory('');
 			setName('');
 			setText('');
@@ -39,13 +47,16 @@ const FeedbackForm = ({ onAddFeedback }) => {
 				<div className={styles.inputs}>
 					<div className={styles.selects}>
 						<CustomSelect
-							optionsString={categories}
+							optionsString={categories.join(',')}
 							value={category}
-							onChange={(e) => setCategory(e.target.value)}
+							onChange={(e) => {
+								setCategory(e.target.value);
+								setName('');
+							}}
 							placeholder='Choix de catégorie'
 						/>
 						<CustomSelect
-							optionsString={names}
+							optionsString={filteredNames.join(',')}
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 							placeholder='Choix du nom'
@@ -69,7 +80,7 @@ const FeedbackForm = ({ onAddFeedback }) => {
 						id='feedback-text'
 						value={text}
 						onChange={(e) => setText(e.target.value)}
-						placeholder='Ecrivez votre avis...'
+						placeholder='Écrivez votre avis...'
 						className={styles.textarea}
 					/>
 				</div>
